@@ -33,17 +33,17 @@ printf("Erste Zahl eingeben: ");
     
     switch(operator){
         case '+':
-        add(a,b);
+        ergebnis = add(a,b);
         break;
         case '-': 
-        sub(a,b);
+        ergebnis = sub(a,b);
         break;
         case '*':
-        mult(a,b);
+        ergebnis = mult(a,b);
         break;
         case '/':
         if(b){
-            div(a,b);
+            ergebnis = div(a,b);
         } else{
             printf("\nDivide by 0 error!");
             return 1;
@@ -73,7 +73,7 @@ float add(float a, float b){
 }
 
 float sub(float a, float b){
-    return a+b;
+    return a-b;
 }
 
 float mult(float a, float b){
