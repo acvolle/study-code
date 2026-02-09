@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
 int main(){
     char word[101];
@@ -20,7 +21,7 @@ int main(){
     char *ptr_back = ptr_ende;
 
     while(ptr_anfang != ptr_ende){
-        if(*ptr_anfang != *ptr_back){
+        if(tolower(*ptr_anfang) != tolower(*ptr_back)){
             palindrom = 0;
 
         }
