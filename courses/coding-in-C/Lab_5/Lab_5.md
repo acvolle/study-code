@@ -92,7 +92,7 @@ Note: If you place the particles with an odd distance, the will never collide.
    - Print the current field (1 for particle, 0 for empty).
    - Move each particle randomly to the left or right by one cell.
    - Ensure particles **do not move out of bounds** but stay at the edge of the field.
-   - If multiple particles move into the same cell, remove them (set cell to 0).
+   - If multiple particles move into the same cell, remove them (set cell to 0). This is called a collision.
 6. Do **not** use structs
 7. Use `<stdlib.h>` and `<time.h>` for random number generation.
 
@@ -113,7 +113,6 @@ Time 3: 0 1 0 0 0 0 0 0 0 0
 
 - Use pointer dereferencing: `*(p_field + i)` to access elements.
 - Use pointer arithmetic for both reading and writing.
-- Generate random movement with `(rand() % 2)`.
-- Ensure random numbers with `srand(time(NULL))`.
+- Generate random movement with `rand()`.
 - Handle collisions after all movements are applied.
 
