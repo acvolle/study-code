@@ -46,8 +46,8 @@ int main(){
     int a = rand();
 
     Node *ptr_new = malloc(sizeof(Node));
-ptr_new->next = NULL;
-ptr_new->value = a;
+    ptr_new->next = NULL;
+    ptr_new->value = a;
     Node *ptr_counter = head;
     for(int i = 0; i < 3; i++){
         ptr_counter = ptr_counter->next;
