@@ -7,13 +7,11 @@
 #include <cstdint>
 #include <limits>
 
-const std::uint8_t MAX_AGE = 150;
-const std::uint8_t ADULT_AGE_LIMIT = 18;
-const std::uint8_t SENIOR_AGE_LIMIT = 65;
-
 // namespace includes functions to classify age range
 namespace validation
 {
+    const std::uint8_t ADULT_AGE_LIMIT = 18;
+    const std::uint8_t SENIOR_AGE_LIMIT = 65;
 
     bool isAdult(std::uint8_t age)
     {
@@ -28,7 +26,7 @@ namespace validation
 
 int main()
 {
-
+    const std::uint8_t MAX_AGE = 150;
     int age = 0;
     /* Why we do not use std::uint8_t here?
      * std::uint8_t is usually an alias for unsigned char
