@@ -94,3 +94,6 @@ Create a class “Note” that stores a text message which is only known at runt
 * Extend the class Note by implementing a copy constructor
 * When a Note object is copied, the new object must allocate its own memory and store its own copy of the string
 * Verify if this resolves the observed issue from Part 1
+
+## 🟢 Section III: Note Class
+
