@@ -29,14 +29,27 @@ namespace validation{
 int main(){
 
     int age = 0;
-    std::cout << "Please enter your age: ";
-    std::cin >> age;
-    if (std::cin.fail()) {
-        std::cout << "Input failed!" << std::endl;
-        return 1;
+
+    while (true){
+        std::cout << "Please enter your age: ";
+        
+        std::cin >> age;
+        if (std::cin.fail()) {
+            std::cout << "Input failed!" << std::endl;
+            break;
+        }
+         else if(age < 0){
+            std::cout << "Too low" << std::endl; 
+        }   
+         else if(age > 120){
+            std::cout << "Too high" << std::endl;
+        }  else{
+            break;
+        }
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
+    
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-    std::cout << "Debug: age = " << static_cast<int>(age) << std::endl;
 
 
     if(age < 0){
