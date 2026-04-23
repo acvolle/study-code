@@ -3,19 +3,20 @@
 #include <cstdint>
 #include <limits>
 
-
+const int CHILD_LIMIT = 18;
+const int SENIOR_LIMIT = 65;
 
 namespace validation{
 
     bool isAdult(int_least8_t age){
-        if(age >= 18){
+        if(age >= CHILD_LIMIT){
             return true;
         }
         return false;
     }
 
     bool isSenior(int_least8_t age){
-        if(age >= 65){
+        if(age >= SENIOR_LIMIT){
             return true;
         }
         return false;
