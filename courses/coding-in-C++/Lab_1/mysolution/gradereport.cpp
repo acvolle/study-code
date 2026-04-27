@@ -84,11 +84,11 @@ void printReport(string name, int homework, int midterm, int finalExam, double f
 
     
     std::cout << std::left << std::setw(20) << "Homework" << ": "
-    << std::fixed << std::setprecision(2) << static_cast<double>(homework) << std::endl;
+        << std::fixed << std::setprecision(2) << static_cast<double>(homework) << std::endl;
     std::cout << std::left << std::setw(20) << "Midterm" << ": "
-    << std::fixed << std::setprecision(2) << static_cast<double>(midterm) << std::endl;
+        << std::fixed << std::setprecision(2) << static_cast<double>(midterm) << std::endl;
     std::cout << std::left << std::setw(20) << "Final Exam" << ": "
-    << std::fixed << std::setprecision(2) << static_cast<double>(finalExam) << std::endl << std::endl;
+        << std::fixed << std::setprecision(2) << static_cast<double>(finalExam) << std::endl << std::endl;
 
     
     std::cout << std::left << std::setw(20) << "Final Grade" << ": "
