@@ -15,6 +15,8 @@ class Note{
         }
         ~Note(){
             delete(text);
+            text = nullptr;
+            std::cout << "Memory released" << std::endl;
         }
         void display(){
             cout << *text << endl;
