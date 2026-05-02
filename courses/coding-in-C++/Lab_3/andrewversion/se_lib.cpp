@@ -208,10 +208,10 @@ std::vector<WebResource*> Engine::executeQuery(Query* query){
     }
     int lowest = 0;
     while(temp.size() > query->getMaxResults()){
-        for(int i = 0; i < temp.size(){
-            if(temp[i]. )
+        for(int i = 0; i < temp.size(); i++){
 
-        })
+        }
+            
     }
 
 
