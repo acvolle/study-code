@@ -25,7 +25,8 @@ class Student : public User{
     public:
         Student(std::string name, int id, double grade) : User(name, id), grade(grade){}
         void printRole(){
-            printInfo();
+            std::cout << "Name: " << name << std::endl;
+            std:: cout << "ID: " << id << std::endl;
             std::cout << "Grade: " << grade <<std::endl;
         }
 };
@@ -37,7 +38,8 @@ class Instructor : public User{
     public:
         Instructor(std::string name, int id, double salary) : User(name, id), salary(salary){}
         void printRole(){
-            printInfo();
+            std::cout << "Name: " << name << std::endl;
+            std:: cout << "ID: " << id << std::endl;
             std::cout << "Salary: " << salary << std::endl;
         }
 };
