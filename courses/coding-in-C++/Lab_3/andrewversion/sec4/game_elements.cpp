@@ -2,7 +2,8 @@
 #include <iostream>
 
 
-//CHARACTER FUNCTIONS
+////////////////CHARACTER FUNCTIONS/////////////////////////////
+
 bool Character::levelUp(){
     if(level < MAX_LEVEL){
         level++;
@@ -24,7 +25,7 @@ bool Character::setName(const std::string& name){
     return false;
 }
 
-//note: allow null pointers
+
 Weapon* Character::changeCurrentWeapon(Weapon* weapon){
     Weapon* temp =  this->currentWeapon;
     currentWeapon = weapon;
@@ -49,9 +50,11 @@ void Character::reduceHealth(){
     healthPoints -= 10;
 }
 
+////////////////////////////////////////////////////////////////
 
 
-//IMPLEMENT WEAPON FUNCTIONS
+
+//////////////////WEAPON FUNCTIONS//////////////////////////////
 
 const std::string& Weapon::getName() const{
     return name;
@@ -75,9 +78,12 @@ std::ostream& operator<<(std::ostream& os, Weapon* ptr_weapon){
     return os;
 }
 
+/////////////////////////////////////////////////////////////////
 
 
-//IMPLEMENT INVENTORY FUNCTIONS
+
+
+/////////////////INVENTORY FUNCTIONS//////////////////////////////
 bool Inventory::isFull() const{
     if(elementsCounter == MAX_INVENTORY){
         return true;
@@ -111,11 +117,13 @@ bool Inventory::removeLastItem(std::string& item){
     return true;
 }
 
+//////////////////////////////////////////////////////////////////
 
 
 
 
-//MAGE FUNCTIONS
+//////////////////MAGE FUNCTIONS//////////////////////////////////
+
 void Mage::printInfo() const{
     std::cout << "Name: " << name << std::endl;
     std::cout <<"Character: Mage" << std::endl;
@@ -135,7 +143,7 @@ bool Mage::setManaPoints(int points){
     return true;
 }
 
-//WARRIOR FUNCTIONS
+////////////////////WARRIOR FUNCTIONS////////////////////////////////
 
 void Warrior::printInfo() const{
     std::cout << "Name: " << name << std::endl;
@@ -156,7 +164,8 @@ bool Warrior::setWeaponSkillPoints(int points){
     return true;
 }
 
-//HEALER & THIEF FUNCTIONS
+
+////////////THIEF & HEALER FUNCTIONS//////////////////////////////////
 
 Healer& Healer::heal(Character& target){
     target.healthPoints = target.maxHealthPoints;
