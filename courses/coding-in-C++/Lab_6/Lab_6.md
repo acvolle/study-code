@@ -173,7 +173,7 @@ Catch this exception in `main()`.
 6. Why should exceptions not be used for normal control flow?
 7. What happens if an exception is never caught?
 
-## Section III: Smart Pointers
+## 🟡 Section III: Smart Pointers
 
 In this section you will practice memory management using smart pointers in C++.
 
@@ -187,8 +187,7 @@ You will practice the following concepts:
 
 ## Task Description
 
-You are part of a software engineering team developing a streaming platform.
-
+The goal is to implement parts of a basic streaming platform.
 The platform manages different types of media devices:
 
 * speakers
@@ -212,7 +211,7 @@ The class should contain:
 
 1. device name
 2. device type
-3. power status
+3. power status which is false by default
 
 Add methods:
 
@@ -229,37 +228,31 @@ Create a class `Room`.
 The class should contain:
 
 1. room name
-2. a collection of devices
+2. a list container of devices
 
 Rules:
 
 * each device belongs to exactly one room
 * devices must be managed using `std::unique_ptr`
-* use `std::make_unique` when creating devices
 
 Add methods:
 
 1. `add_device(...)`
-2. `remove_device(...)`
+2. `remove_device_by_name(...)`
 3. `print_devices()`
 
 ---
 
 ### Testing in `main()`
 
-Create multiple rooms and devices.
+Create multiple rooms.
+Create multiple devices owned by unique pointers.
 
-Move devices into rooms using:
-
-```cpp
-std::move(...)
-```
-
-After moving, test whether the original pointer became `nullptr`.
+Move devices into rooms and test what happens with the original pointer.
 
 ---
 
-## 🟡 Part 2: Ownership Semantics
+## 🟢 Part 2: Ownership Semantics
 
 Answer the following questions by experimenting with code:
 
@@ -270,21 +263,51 @@ Answer the following questions by experimenting with code:
 
 ---
 
-## 🟠 Part 3: `std::shared_ptr`
+## 🔴 Part 3: `std::shared_ptr` and Inheritance
 
 Some devices should be shareable between multiple rooms.
 
-Example:
+Examples:
 
-* a central music server
-* a network storage device
+- a central music server
+- a network storage device
 
-Create a class `SharedDevice`.
+These shared devices are specialized devices with additional network functionality.
 
-The class should contain:
+Create a class:
 
-1. device name
-2. device type
+```cpp
+SharedDevice
+```
+
+that inherits from:
+
+```cpp
+Device
+```
+
+---
+
+## Additional Requirements for `SharedDevice`
+
+The class should additionally contain:
+
+1. IP address
+2. network connection status
+
+Add methods:
+
+```cpp
+connect_to_network()
+disconnect_from_network()
+print_network_info()
+```
+
+---
+
+## Shared Ownership
+
+Shared devices may belong to multiple rooms simultaneously.
 
 Use:
 
@@ -292,90 +315,44 @@ Use:
 std::shared_ptr
 ```
 
-to manage these devices.
+to manage shared devices.
 
 ---
 
-Modify the `Room` class so that rooms may also contain shared devices.
+## Modify the `Room` class
+
+Rooms should now support:
+
+1. exclusive devices (`std::unique_ptr<Device>`)
+2. shared devices (`std::shared_ptr<SharedDevice>`)
 
 Add methods:
 
-1. `add_shared_device(...)`
-2. `print_shared_devices()`
+```cpp
+add_shared_device(...)
+print_shared_devices()
+```
 
-Use:
+---
+
+## Testing in `main()`
+
+1. Create shared devices using:
 
 ```cpp
 std::make_shared(...)
 ```
 
-when creating shared devices.
-
----
-
-### Example
-
-```cpp
-std::shared_ptr<SharedDevice> server =
-    std::make_shared<SharedDevice>(
-        "Main Server",
-        "Streaming"
-    );
-```
-
-Add the same shared device to multiple rooms.
-
----
-
-### Testing in `main()`
-
-Use:
+2. Add the same shared device to multiple rooms.
+3. Check the reference counter using:
 
 ```cpp
 use_count()
 ```
 
-to observe shared ownership.
-
-Example:
-
-```cpp
-std::cout << server.use_count()
-          << std::endl;
-```
-
-Check the reference counter:
-
-1. after creation
-2. after adding to rooms
-3. after rooms are destroyed
-
----
-
-## 🔴 Part 4: Comparing `unique_ptr` and `shared_ptr`
-
-Experiment with both smart pointer types and answer the following questions:
-
-1. Which pointer type supports exclusive ownership?
-2. Which pointer type supports shared ownership?
-3. Which pointer type has less overhead?
-4. Why can `shared_ptr` be more expensive?
-5. In which situations should `unique_ptr` be preferred?
-6. When is `shared_ptr` appropriate?
-
----
-
-## Requirements
-
-Your solution must contain:
-
-1. at least one `std::unique_ptr`
-2. at least one `std::shared_ptr`
-3. usage of `std::move(...)`
-4. usage of `make_unique`
-5. usage of `make_shared`
-6. at least one destructor output
-7. at least one `use_count()` test
+- after creation
+- after adding to rooms
+- after rooms are destroyed
 
 ---
 
@@ -387,4 +364,4 @@ Your solution must contain:
 4. What problem does `std::shared_ptr` solve?
 5. What does `use_count()` represent?
 6. Why can cyclic references become problematic with `std::shared_ptr`?
-7. Which smart pointer should usually be preferred in modern C++?
+7. Why should the base class destructor be virtual in polymorphic class hierarchies?
