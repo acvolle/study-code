@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <algorithm>
 //guaranteed for int, double, string
 template <typename T>
 void swap_values(T& val_1, T& val_2){
@@ -40,8 +42,6 @@ T get_smallest_value(const T (&frames)[U]){
     return current_lowest;
 }
 
-
-
 template <typename T, typename U>
 void print_value_pair(const std::string& label1, const T& value1, const std::string& label2, const U& value2){
     std::cout << label1 << ": " << value1;
@@ -49,7 +49,12 @@ void print_value_pair(const std::string& label1, const T& value1, const std::str
     std::cout << label2 << ": " << value2 << std::endl;
 }
 
+
+
+
 int main(){
+
+    //SECTION 1
     std::string a = "Hallo";
     std::string b = "Amrcel Davis";
     swap_values(a, b);
@@ -65,5 +70,56 @@ int main(){
 
     print_value_pair("Channel", "motor_temp", "Priority", 2);
     print_value_pair("Double", 0.67, "Priority", 2);
+
+    //SEC 2, TASK 6
+    std::vector<int> v = {42, 17, 42, 5, 99, 17, 63, 12};
+    for(int elem : v){
+        std::cout << elem << ", ";
+    }
+    std::cout << std::endl;
+
+    std::sort(v.begin(), v.end());
+    for(int elem : v){
+        std::cout << elem << ", ";
+    }
+    std::cout << std::endl;
+
+    if(std::find(v.begin(), v.end(), 63) == v.end()){
+        std::cout << "63 is not in the vector" << std::endl;
+    } else{
+        std::cout << "63 is in the vector" << std::endl;
+    }
+
+    //SEC 2, TASK 7
+    std::vector<int> w = {7, -1, 13, -1, 21, 21, 8, -1, 8};
+    //replace all values
+    std::replace(w.begin(), w.end(), -1, 0);
+    for(int elem : w){
+        std::cout << elem << ", ";
+    }
+    std::cout << std::endl;
+    
+    //std::count to count the number of 8s
+    std::cout << std::count(w.begin(), w.end(), 8) << std::endl;
+
+    //reverse the dataset
+    std::reverse(w.begin(), w.end());
+    for(int elem : w){
+        std::cout << elem << ", ";
+    }
+    std::cout << std::endl;
+
+
+    //SEC 2, TASK 8
+    for(auto it = w.begin(); it < w.end(); it++){
+        std::cout << *it << std::endl;
+    }
+
+
+
+
+
+
+
 
 }
