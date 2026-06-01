@@ -111,7 +111,7 @@ int main(){
 
 
     //SEC 2, TASK 8
-    for(auto it = w.begin(); it < w.end(); it++){
+    for(auto it = w.begin(); it < w.end(); ++it){
         std::cout << *it << std::endl;
     }
 

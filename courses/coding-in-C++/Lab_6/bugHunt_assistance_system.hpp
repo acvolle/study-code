@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
-
+#include <memory>
 #include "bugHunt_vehicle.hpp"
 
 class DistanceSensor
@@ -12,9 +12,10 @@ class DistanceSensor
 private:
     std::string position;
     bool active;
+    double measured_distance_m;
 
 public:
-    double measured_distance_m;
+    //double measured_distance_m; should be privat not public
 
     DistanceSensor(const std::string &sensor_position,
                    double initial_distance_m);
@@ -33,6 +34,17 @@ public:
     void print_info() const;
 };
 
+class AssistanceFeature
+{
+public:
+    AssistanceFeature();
+
+    virtual void evaluate(Vehicle &vehicle) const = 0;
+    
+    virtual void print_name() const = 0;
+
+};
+
 class EmergencyBrakeSystem
 {
 private:
@@ -41,7 +53,7 @@ private:
 public:
     EmergencyBrakeSystem(double critical_distance);
 
-    void evaluate(Vehicle &vehicle, const DistanceSensor &front_sensor) const;
+    void evaluate(Vehicle &vehicle, const std::shared_ptr<DistanceSensor> front_sensor) const;
 };
 
 class LaneKeepingAssist
@@ -67,19 +79,19 @@ public:
                           double minimum_distance);
 
     void evaluate(Vehicle &vehicle,
-                  const DistanceSensor &front_sensor) const;
+                  const std::shared_ptr<DistanceSensor> front_sensor) const;
 };
 
 class ParkingAssistant
 {
 private:
-    std::vector<DistanceSensor *> sensors;
+    std::vector<std::shared_ptr<DistanceSensor>> sensors;
     double warning_distance_m;
 
 public:
     ParkingAssistant(double warning_distance);
 
-    void add_sensor(DistanceSensor *sensor);
+    void add_sensor(std::shared_ptr<DistanceSensor> sensor);
     void print_warnings() const;
 };
 
