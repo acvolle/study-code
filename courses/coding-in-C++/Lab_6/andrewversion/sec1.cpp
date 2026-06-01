@@ -30,7 +30,7 @@ int main(){
 
     ConfigLoader loader;
     try{
-        loader.load("invalid.cfg");
+        loader.load("inva.mtu");
 
     }
 

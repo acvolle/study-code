@@ -1,4 +1,4 @@
-#include "vehicle.hpp"
+#include "bughunt_vehicle.hpp"
 
 Vehicle::Vehicle(const std::string &vehicle_model)
     : model(vehicle_model),
@@ -14,13 +14,15 @@ void Vehicle::accelerate(double amount_kmh)
     if (amount_kmh <= 0.0)
     {
         return;
-    }
+    }  
+    
+    // speed_kmh += amount_kmh; would acccelerate first higher than maxspeed
 
-    speed_kmh += amount_kmh;
-
-    if (speed_kmh > MAX_SPEED_KMH)
+    if (speed_kmh + amount_kmh > MAX_SPEED_KMH)
     {
         speed_kmh = MAX_SPEED_KMH;
+    } else{
+        speed_kmh += amount_kmh;
     }
 
     brake_light_on = false;
@@ -33,12 +35,14 @@ void Vehicle::brake(double amount_kmh)
         return;
     }
 
-    speed_kmh -= amount_kmh;
+    //speed_kmh -= amount_kmh; again, speeed could temporarily be lowerd below 0
     brake_light_on = true;
 
-    if (speed_kmh < 0.0)
+    if (speed_kmh - amount_kmh < 0.0)
     {
         speed_kmh = 0.0;
+    } else{
+        speed_kmh -= amount_kmh;
     }
 }
 

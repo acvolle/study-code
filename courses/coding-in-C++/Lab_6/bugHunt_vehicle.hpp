@@ -5,6 +5,8 @@
 #include <stdexcept>
 #include <string>
 
+constexpr int MAX_SPEED_KMH  = 200;
+
 class Vehicle
 {
 private:
@@ -13,7 +15,7 @@ private:
     double steering_angle;
     double lane_offset_m;
     bool brake_light_on;
-
+    
 public:
     Vehicle(const std::string &vehicle_model);
 
@@ -26,7 +28,7 @@ public:
     double get_steering_angle() const;
     double get_lane_offset() const;
 
-    std::string &get_model();
+    const std::string& get_model() const ;
 
     bool is_brake_light_on() const;
 
