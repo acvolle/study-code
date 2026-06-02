@@ -18,6 +18,21 @@ public:
     }
 };
 
+class Alarm
+{
+private:
+    const float warning_level = 30;
+
+public:
+    void update_temp(float value)
+    {
+        if (value > warning_level)
+        {
+            std::cout << "Warning! The temerature is too high!!!!!" << std::endl;
+        }
+    }
+};
+
 class TemperatureSensor
 {
 private:
@@ -25,6 +40,7 @@ private:
 
     Display display;
     Logger logger;
+    Alarm alarm;
 
 public:
     void set_temperature(float value)
@@ -34,6 +50,7 @@ public:
         // directly coupled to other classes
         display.show_temperature(temperature);
         logger.log_temperature(temperature);
+        alarm.update_temp(temperature);
     }
 };
 
