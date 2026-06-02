@@ -72,6 +72,30 @@ public:
     }
 };
 
+class Alarm : public Observer
+{
+private:
+    const float warning_level = 30;
+
+public:
+    void update(float value) override
+    {
+        if (value > warning_level)
+        {
+            std::cout << "Warning! The temerature is too high!!!!!" << std::endl;
+        }
+    }
+};
+
+class CloudPublisher : public Observer
+{
+    public:
+    void update(float value) override
+    {
+        std::cout << "Publishing " << value << " C to cloud\n";
+    }
+};
+
 // ======================================================
 // Main
 // ======================================================
@@ -82,9 +106,13 @@ int main()
 
     Display display;
     Logger logger;
+    Alarm alarm;
+    CloudPublisher cp;
 
     sensor.add_observer(&display);
     sensor.add_observer(&logger);
+    sensor.add_observer(&alarm);
+    sensor.add_observer(&cp);
 
     sensor.set_temperature(23.5f);
 

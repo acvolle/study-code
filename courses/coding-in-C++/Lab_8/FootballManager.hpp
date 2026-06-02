@@ -31,10 +31,11 @@ class ClubService
 {
 public:
     virtual ~ClubService() = default;
-
+    
+    //VIOLATES INTERFACE SEGREGATION, things like save player or notify should be called via seperate interfaces
     virtual void train_player(Player &player, int intensity) = 0;
     virtual void save_player(const Player &player) = 0;
-    virtual void notify_player(const Player &player, const std::string &message) = 0;
+    virtual void notify_player(const Player &player, const std::string &message) = 0; 
 };
 
 class FilePlayerRepository
@@ -54,8 +55,8 @@ class FootballManager : public ClubService
 private:
     void select_strategy(const std::string &strategy);
 
-    FilePlayerRepository repository;
-    EmailNotifier notifier;
+    FilePlayerRepository repository;  //VIOLATES DEPENDENCY INVERSION, should use abstract interface
+    EmailNotifier notifier;   //VIOLATES DEPENDENCY INVERSION, should use abstract interface
 
 public:
     FootballManager() = default;
@@ -63,8 +64,8 @@ public:
     void prepare_player(Player &player, const std::string &strategy);
 
     void train_player(Player &player, int intensity) override;
-    void save_player(const Player &player) override;
-    void notify_player(const Player &player, const std::string &message) override;
+    void save_player(const Player &player) override;  //VIOLATES SINGLE RESPOSIBILITY, should be called via new interface
+    void notify_player(const Player &player, const std::string &message) override;  //VIOLATES SINGLE RESPOSIBILITY, should be called via new interface
 };
 
 #endif
