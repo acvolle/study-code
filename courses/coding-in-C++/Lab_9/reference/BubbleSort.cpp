@@ -3,8 +3,8 @@ using namespace std;
 
 int main() {
 
-    int arr[] = {7, 4, 5, 2};
-    int n = 4;
+    int arr[] = {-500, 4, 5, 9};
+    int n = sizeof(arr)/sizeof(arr[0]);
     int temp;
 
     //Ausgabe des unsortierten Arrays
