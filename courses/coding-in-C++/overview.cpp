@@ -9,7 +9,13 @@
 
 // constructros and destructors
 
-// custim exception
+
+/* Use a custom exception if:
+ - another stadard error type doesn't really describe the error well
+ - the error is programm-specific (e.g. sensor unreachable)
+ - these should be handled specially
+ - you want an exception with more data about what went wrong
+*/
 class custom_error : std::exception
 { // a child class of std::exception
 private:
@@ -31,8 +37,13 @@ void error_test(){
         throw std::invalid_argument("Value is wrong");
     }
 
-    catch(std::invalid_argument& e){
+    catch(const std::invalid_argument& e){ //const: exception isn't changed!
         std::cerr << e.what() << std::endl;
 
     }
+    catch(const std::exception& e){  //always finish catch blocks with a default catch block! 
+        std::cerr << e.what() << std::endl;
+
+    }
+    //if exception isn't caught, stack is completely unwound and programm is terminated (std::terminate)
 }

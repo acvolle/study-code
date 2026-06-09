@@ -79,7 +79,7 @@ int main(){
         std::cerr << e.what() << std::endl;
     }
 
-    catch(...){
+    catch(const std::exception& e){
 
     }
     
