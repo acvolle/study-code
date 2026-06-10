@@ -1,6 +1,11 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\courses",
+    "\\courses\\coding-in-C++",
+    "\\courses\\coding-in-C++\\Lab_6",
+    "\\courses\\coding-in-C++\\Lab_6\\andrewversion"
   ],
+  "SelectedNode": "\\courses\\coding-in-C++\\Lab_6\\Lab_6.md",
   "PreviewInSolutionExplorer": false
 }

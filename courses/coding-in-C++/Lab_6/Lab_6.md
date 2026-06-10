@@ -256,8 +256,8 @@ Move devices into rooms and test what happens with the original pointer.
 
 Answer the following questions by experimenting with code:
 
-1. What happens if you try to copy a `std::unique_ptr`?
-2. Why is `std::move(...)` required?
+1. What happens if you try to copy a `std::unique_ptr`? //doesn't compile
+2. Why is `std::move(...)` required? // transers ownership
 3. What happens to the original pointer after moving?
 4. When is the destructor automatically called?
 
